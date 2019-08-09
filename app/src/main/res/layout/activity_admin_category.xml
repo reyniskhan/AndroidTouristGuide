@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AdminCategoryActivity">
+
+
+    <TextView
+        android:id="@+id/heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD NEW PLACES"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:layout_margin="10dp"
+        />
+
+    <com.rey.material.widget.Button
+        android:id="@+id/btn_add_religiousplaces"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Religious place"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/heading"
+        />
+
+    <com.rey.material.widget.Button
+        android:id="@+id/btn_add_restaurants"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add restaurants"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/btn_add_religiousplaces"
+        />
+
+    <com.rey.material.widget.Button
+        android:id="@+id/btn_add_hotels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add Hotels"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/btn_add_restaurants"
+        />
+
+    <com.rey.material.widget.Button
+        android:id="@+id/btn_remove_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Remove Users"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        />
+
+</RelativeLayout>
