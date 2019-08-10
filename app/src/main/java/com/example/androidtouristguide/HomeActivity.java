@@ -2,39 +2,33 @@ package com.example.androidtouristguide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.androidtouristguide.Interface.PlaceDetailsActivity;
 import com.example.androidtouristguide.Model.Places;
 import com.example.androidtouristguide.Prevalent.Prevalent;
 import com.example.androidtouristguide.ViewHolder.PlaceViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.LayoutInflater;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
-
-import androidx.drawerlayout.widget.DrawerLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.Menu;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import io.paperdb.Paper;
@@ -44,7 +38,7 @@ public class HomeActivity extends AppCompatActivity
 
     private String type = "";
 
-    private DatabaseReference productRef;
+    private DatabaseReference placeRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
 
@@ -62,7 +56,7 @@ public class HomeActivity extends AppCompatActivity
             type = getIntent().getExtras().get("Admin").toString();
         }
 
-        productRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        placeRef = FirebaseDatabase.getInstance().getReference().child("Places");
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
@@ -95,6 +89,72 @@ public class HomeActivity extends AppCompatActivity
             Picasso.get().load(Prevalent.currentOnlineUser.getImage()).placeholder(R.drawable.profile).into(profileImageView);
 
         }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        FirebaseRecyclerOptions<Places> options=
+                new FirebaseRecyclerOptions.Builder<Places>()
+                        .setQuery(placeRef, Places.class)
+                        .build();
+
+
+        FirebaseRecyclerAdapter<Places, PlaceViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Places, PlaceViewHolder>(options) {
+                    @Override
+                    protected void onBindViewHolder(@NonNull PlaceViewHolder holder, int i, @NonNull final Places model) {
+
+
+
+                        holder.txtPlaceName.setText(model.getName());
+                        holder.txtPlaceDescription.setText(model.getDescription());
+                        holder.txtPlaceDistance.setText("Distance = " + "");
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
+
+
+
+
+                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                if (type.equals("Admin")){
+
+                                    Intent intent = new Intent(HomeActivity.this, AdminMaintainPlacesActivity.class);
+                                    intent.putExtra("name",model.getName());
+                                    startActivity(intent);
+
+                                }else{
+
+                                    Intent intent = new Intent(HomeActivity.this, PlaceDetailsActivity.class);
+                                    intent.putExtra("name",model.getName());
+                                    startActivity(intent);
+
+                                }
+
+
+
+                            }
+                        });
+
+
+                    }
+
+                    @NonNull
+                    @Override
+                    public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.places_layout, parent, false);
+                        PlaceViewHolder holder = new PlaceViewHolder(view);
+                        return holder;
+                    }
+                };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
+
     }
 
 
@@ -134,23 +194,38 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_hotels) {
-            // Handle the camera action
-        } else if (id == R.id.nav_religiousplaces) {
+        if (id == R.id.nav_search) {
 
-        } else if (id == R.id.nav_restaurants) {
+                if (type.equals("Admin")) {
+                    Intent intent = new Intent(HomeActivity.this, SearchPlacesActivity.class);
+                    intent.putExtra("Admin","Admin");
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(HomeActivity.this, SearchPlacesActivity.class);
+                    startActivity(intent);
+                }
 
-        } else if (id == R.id.nav_search) {
 
         } else if (id == R.id.nav_settings) {
 
+            if (!type.equals("Admin")) {
+
+                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            } else{
+                Toast.makeText(HomeActivity.this,"Only for End-Users. Can't be accessed by Admins!!!",Toast.LENGTH_SHORT).show();
+            }
+
+
         } else if (id == R.id.nav_logout) {
 
-            Paper.book().destroy();
-            Intent intent = new Intent(HomeActivity.this,MainActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-            finish();
+
+                Paper.book().destroy();
+                Intent intent = new Intent(HomeActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK| Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+
 
         }
 

@@ -8,7 +8,6 @@ public class Users {
 
     }
 
-
     public Users(String name, String phone, String password, String image, String address) {
         this.name = name;
         this.phone = phone;
@@ -16,6 +15,7 @@ public class Users {
         this.image = image;
         this.address = address;
     }
+
 
     public String getName() {
         return name;

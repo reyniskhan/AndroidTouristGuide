@@ -64,7 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
         String address = inputAddress.getText().toString();
 
         if (TextUtils.isEmpty(name)){
-            Toast.makeText(this,"Please enter your name...",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Please enter your name...",Toast.LENGTH_SHORT).show();
         } else if (TextUtils.isEmpty(phone)){
             Toast.makeText(this,"Please enter your Phone Number...",Toast.LENGTH_LONG).show();
         } else if (TextUtils.isEmpty(password)){

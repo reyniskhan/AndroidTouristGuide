@@ -3,24 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <item android:title="Places">
-        <menu>
-            <group android:id="@+id/places"
-                android:checkableBehavior="single">
-            <item
-                android:id="@+id/nav_restaurants"
-                android:title="Restaurants" />
-            <item
-                android:id="@+id/nav_hotels"
-                android:title="Hotels" />
-                <item
-                    android:id="@+id/nav_religiousplaces"
-                    android:title="Religious Places" />
-             </group>
-        </menu>
-    </item>
 
-<item android:title="Miscellaneous">
+
+<item>
     <menu>
     <group android:id="@+id/settings"
         android:checkableBehavior="single">

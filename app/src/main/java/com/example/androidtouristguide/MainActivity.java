@@ -32,10 +32,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        joinNowButton = (Button) findViewById(R.id.main_join_now_btn);
-        loginButton = (Button) findViewById(R.id.main_login_btn);
+        joinNowButton =  findViewById(R.id.main_join_now_btn);
+        loginButton = findViewById(R.id.main_login_btn);
         Paper.init(this);
-        loadingBar = new ProgressDialog(this);
+        loadingBar = new ProgressDialog(MainActivity.this);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                         if (usersData.getPassword().equals(password)){
                             loadingBar.dismiss();
                             Toast.makeText(MainActivity.this,"Login Successfullu;",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                            Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             Prevalent.currentOnlineUser = usersData;
                             startActivity(intent);
 

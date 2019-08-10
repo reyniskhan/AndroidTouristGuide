@@ -12,7 +12,7 @@ import com.example.androidtouristguide.R;
 
 public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtlaceName, txtPlaceDescription, txtPlaceDistance;
+    public TextView txtPlaceName, txtPlaceDescription, txtPlaceDistance;
     public ImageView imageView;
     public ItemClickListener listener;
 
@@ -20,10 +20,10 @@ public class PlaceViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public PlaceViewHolder(@NonNull View itemView) {
         super(itemView);
 
-        imageView = itemView.findViewById(R.id.place_image);
-        txtPlaceDescription = itemView.findViewById(R.id.place_description);
-        txtlaceName = itemView.findViewById(R.id.place_name);
-        txtPlaceDistance = itemView.findViewById(R.id.place_distance);
+        imageView = itemView.findViewById(R.id.home_place_image);
+        txtPlaceDescription = itemView.findViewById(R.id.home_place_description);
+        txtPlaceName = itemView.findViewById(R.id.home_place_name);
+        txtPlaceDistance = itemView.findViewById(R.id.home_place_distance);
 
     }
 

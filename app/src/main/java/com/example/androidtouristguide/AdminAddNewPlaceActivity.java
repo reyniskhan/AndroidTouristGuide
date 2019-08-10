@@ -32,7 +32,7 @@ import java.util.HashMap;
 
 public class AdminAddNewPlaceActivity extends AppCompatActivity {
 
-    private String categoryName, description, locationLatitude, locationLongitude,  name, saveCurrentDate, saveCurrentTime;
+    private String categoryName, description, locationLatitude, locationLongitude,  name;
 
     private Button addNewPlaceButton;
     private EditText inputPlaceName, inputPlaceDescription, inputPlaceLocationLatitude, inputPlaceLocationLongitude;
@@ -204,7 +204,7 @@ public class AdminAddNewPlaceActivity extends AppCompatActivity {
         productMap.put("locationLatitude",locationLatitude);
         productMap.put("locationLongitude",locationLongitude);
 
-        placeRef.child(categoryName).updateChildren(productMap)
+        placeRef.child(name).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

@@ -2,18 +2,27 @@ package com.example.androidtouristguide.Model;
 
 public class Places {
 
-    private String name, descripton, locationLatitude, image, category, locationLongitude;
+    private String name, description, locationLatitude, image, category, locationLongitude, distance;
 
     public Places() {
     }
 
-    public Places(String name, String descripton, String locationLatitude, String image, String category, String locationLongitude) {
+    public Places(String name, String descripton, String locationLatitude, String image, String category, String locationLongitude, String distance) {
         this.name = name;
-        this.descripton = descripton;
+        this.description = descripton;
         this.locationLatitude = locationLatitude;
         this.image = image;
         this.category = category;
         this.locationLongitude = locationLongitude;
+        this.distance = distance;
+    }
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 
     public String getName() {
@@ -24,12 +33,12 @@ public class Places {
         this.name = name;
     }
 
-    public String getDescripton() {
-        return descripton;
+    public String getDescription() {
+        return description;
     }
 
     public void setDescripton(String descripton) {
-        this.descripton = descripton;
+        this.description = descripton;
     }
 
     public String getLocationLatitude() {

@@ -55,16 +55,29 @@
         />
 
     <com.rey.material.widget.Button
-        android:id="@+id/btn_remove_users"
+        android:id="@+id/btn_maintain_places"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Remove Users"
+        android:text="Maintain Places"
         android:layout_marginTop="20dp"
         android:background="@drawable/buttons"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="120dp"
         />
+    <com.rey.material.widget.Button
+        android:id="@+id/btn_logout_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/buttons"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        />
+
 
 </RelativeLayout>
