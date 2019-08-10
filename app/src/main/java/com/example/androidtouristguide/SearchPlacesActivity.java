@@ -76,7 +76,6 @@ public class SearchPlacesActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull PlaceViewHolder holder, int i, @NonNull final Places model) {
                         holder.txtPlaceName.setText(model.getName());
                         holder.txtPlaceDescription.setText(model.getDescription());
-                        holder.txtPlaceDistance.setText("Distance = ");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {

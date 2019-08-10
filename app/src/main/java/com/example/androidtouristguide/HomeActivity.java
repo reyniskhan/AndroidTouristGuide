@@ -111,7 +111,6 @@ public class HomeActivity extends AppCompatActivity
 
                         holder.txtPlaceName.setText(model.getName());
                         holder.txtPlaceDescription.setText(model.getDescription());
-                        holder.txtPlaceDistance.setText("Distance = " + "");
                         Picasso.get().load(model.getImage()).into(holder.imageView);
 
 
