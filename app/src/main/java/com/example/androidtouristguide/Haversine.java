@@ -16,7 +16,9 @@ public class Haversine {
         double a = haversin(dLat) + Math.cos(startLat) * Math.cos(endLat) * haversin(dLong);
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return EARTH_RADIUS * c; // <-- d
+        double value =  EARTH_RADIUS * c;// <-- d
+        return (Math.round(value * 100D) / 100D);
+
     }
 
     public static double haversin(double val) {

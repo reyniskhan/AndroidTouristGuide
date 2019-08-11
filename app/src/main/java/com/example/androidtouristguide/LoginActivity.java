@@ -130,12 +130,12 @@ public class LoginActivity extends AppCompatActivity {
                         if (usersData.getPassword().equals(password)){
                             if (parentDbName.equals("Admins")) {
                                 loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Welcome Admin!! Login Successfullu;", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Welcome Admin!! Login Successfully;", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, AdminCategoryActivity.class);
                                 startActivity(intent);
                             }else if(parentDbName.equals("Users")){
                                 loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Login Successfullu;", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Login Successfully;", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                                 Prevalent.currentOnlineUser = usersData;
                                 startActivity(intent);

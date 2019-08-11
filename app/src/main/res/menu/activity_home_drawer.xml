@@ -25,4 +25,29 @@
     </menu>
 </item>
 
+    <item android:title="Emergency">
+        <menu>
+            <item
+                android:id="@+id/police"
+                android:icon="@drawable/ic_notifications"
+                android:title="Police" />
+            <item
+                android:id="@+id/ambulance"
+                android:icon="@drawable/ic_hospital"
+                android:title="Ambulance" />
+            <item
+                android:id="@+id/firefighter"
+                android:icon="@drawable/ic_fire"
+                android:title="Fire Brigade"
+                />
+
+            <item
+                android:id="@+id/helpline"
+                android:icon="@drawable/ic_helpline"
+                android:title="Helpline"
+                />
+
+        </menu>
+    </item>
+
 </menu>

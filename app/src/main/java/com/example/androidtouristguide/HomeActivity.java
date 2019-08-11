@@ -1,12 +1,14 @@
 package com.example.androidtouristguide;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +28,7 @@ import com.example.androidtouristguide.ViewHolder.PlaceViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -41,6 +44,8 @@ public class HomeActivity extends AppCompatActivity
     private DatabaseReference placeRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
+    boolean BackOnce = false;
+
 
 
     @Override
@@ -164,7 +169,8 @@ public class HomeActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+//            super.onBackPressed();
+            this.moveTaskToBack(true);
         }
     }
 
@@ -226,10 +232,55 @@ public class HomeActivity extends AppCompatActivity
                 finish();
 
 
+        } else if (id == R.id.police) {
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:100"));
+        startActivity(intent);
+
+        } else if (id == R.id.ambulance) {
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:102"));
+        startActivity(intent);
+
+        } else if (id == R.id.firefighter) {
+
+        Intent intent = new Intent(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel:101"));
+        startActivity(intent);
+
+        }else if (id == R.id.helpline) {
+
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:197"));
+            startActivity(intent);
+
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+//    @Override
+//    public void onBackPressed() {
+//
+//        if (BackOnce) {
+//            finish();
+//        } else {
+//            BackOnce = true;
+//
+//            Snackbar sb = Snackbar.make(relativeLayout,"Press back again to exit",Snackbar.LENGTH_SHORT);
+//            sb.addCallback(new Snackbar.Callback() {
+//                @Override
+//                public void onDismissed(Snackbar snackbar, int event) {
+//                    super.onDismissed(snackbar, event);
+//                    BackOnce = false;
+//                }
+//            });
+//            sb.show();
+//        }
+//    }
 }

@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     if (usersData.getPhone().equals(phone)){
                         if (usersData.getPassword().equals(password)){
                             loadingBar.dismiss();
-                            Toast.makeText(MainActivity.this,"Login Successfullu;",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this,"Login Successfully",Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                             Prevalent.currentOnlineUser = usersData;
                             startActivity(intent);
